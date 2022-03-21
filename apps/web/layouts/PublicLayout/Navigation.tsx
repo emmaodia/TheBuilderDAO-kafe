@@ -15,8 +15,7 @@ const Navigation = () => {
       props.$active
         ? 'font-larken-italic dark:bg-kafedarker bg-kafelighter dark:text-kafewhite text-kafeblack p-2 rounded-3xl w-32'
         : ''}
-    lg:text-3xl
-    text-2xl
+    text-3xl
     font-larken
     leading-10
     block
@@ -25,8 +24,8 @@ const Navigation = () => {
 
   return (
     <>
-      <div className="flex flex-row lg:flex-col flex-1 mt-5 h-10 lg:h-full">
-        <nav className="flex flex-1 justify-center items-center lg:block space-y-1 space-x-2">
+      <div className="flex flex-col flex-1 mt-5">
+        <nav className="flex-1 space-y-1">
           <div>
             <Link key="learn" href={routes.learn.index} passHref>
               <StyledNavigate $active={router.pathname === routes.learn.index}>

@@ -2,9 +2,16 @@ import { connectRefinementList } from 'react-instantsearch-dom';
 import Select from 'react-select';
 import { useTheme } from 'next-themes';
 import { useState } from 'react';
-import DropdownIndicator from './DropdownIndicator';
 
-const RefinementList = ({ items, refine, Control, customStyles }) => {
+const RefinementList = ({
+  items,
+  refine,
+  clear,
+  Control,
+  DropdownIndicator,
+  customStyles,
+  isFromSearch,
+}) => {
   const { theme } = useTheme();
   const innerTheme = theme;
   const [filteredItems, setFilteredItems] = useState('');

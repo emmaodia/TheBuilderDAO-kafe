@@ -1,13 +1,18 @@
 import { connectSortBy } from 'react-instantsearch-dom';
 import Select from 'react-select';
 import { useTheme } from 'next-themes';
-import DropdownIndicator from './DropdownIndicator';
 
 type Item = {
   value?: string;
 };
 
-const SortBy = ({ items, refine, Control, customStyles }) => {
+const SortBy = ({
+  items,
+  refine,
+  Control,
+  DropdownIndicator,
+  customStyles,
+}) => {
   const { theme } = useTheme();
   const innerTheme = theme;
   return (

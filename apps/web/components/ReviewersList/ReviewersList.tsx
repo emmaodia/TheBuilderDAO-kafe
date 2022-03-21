@@ -5,7 +5,6 @@ import { useGetListOfReviewers } from '@builderdao-sdk/dao-program';
 import AddReviewerForm from '@app/components/AddReviewerForm/AddReviewerForm';
 import DeleteReviewerButton from '@app/components/DeleteReviewerButton/DeleteReviewerButton';
 import IsAdmin from '@app/components/IsAdmin/IsAdmin';
-import Loader from '@app/components/Loader/Loader';
 
 type ReviewersListProps = {};
 
@@ -15,7 +14,7 @@ const ReviewersList = (props: ReviewersListProps) => {
   const { reviewers, loading, error, mutate } = useGetListOfReviewers();
 
   if (loading) {
-    return <Loader />;
+    return <div>Loading...</div>;
   }
 
   if (error) {

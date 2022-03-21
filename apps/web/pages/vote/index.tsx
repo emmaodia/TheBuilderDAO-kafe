@@ -20,7 +20,6 @@ import {
   NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY,
 } from '@app/constants';
 import TutorialProposalFilter from '@app/components/Search/TutorialProposalFilter';
-import Loader from '@app/components/Loader/Loader';
 
 const searchClient = algoliasearch(
   NEXT_PUBLIC_ALGOLIA_APP_ID,
@@ -34,7 +33,7 @@ const ProposalList = () => {
     return <div>Error: {error.message} </div>;
   }
   if (loading && !error) {
-    return <Loader />;
+    return <div>Loading</div>;
   }
   return (
     <div>
@@ -56,7 +55,7 @@ const Home: NextPage = () => {
         <title>Search Proposals</title>
       </Head>
 
-      <main className="w-full px-4">
+      <main className="w-full">
         <Banner
           header="Upvote proposals you want to see get written."
           description="Once a proposal gets 100 votes it will be funded by the community."
@@ -68,9 +67,9 @@ const Home: NextPage = () => {
             indexName={NEXT_PUBLIC_ALGOLIA_INDEX_NAME}
           >
             <Configure hitsPerPage={4} analytics={false} />
-            <div className="flex flex-col-reverse lg:flex-row items-start justify-center w-full flex-wrap lg:flex-nowrap">
-              <div className="flex flex-col lg:grow">
-                <div className="lg:my-6 lg:mt-10 mt-10 mb-4">
+            <div className="flex items-start justify-between">
+              <div className="flex flex-col grow">
+                <div className="my-6">
                   <ProposalStateTabs
                     attribute="state"
                     defaultRefinement={[ProposalStateE.submitted]}

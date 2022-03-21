@@ -18,7 +18,7 @@ const LoginButton = props => {
         dark:hover:bg-kafelighter
         hover:text-kafewhite
         hover:bg-kafeblack
-        lg:w-[200px]
+        w-[200px]
         text-center
         "
       />

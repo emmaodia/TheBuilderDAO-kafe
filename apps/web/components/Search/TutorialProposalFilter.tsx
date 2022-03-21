@@ -1,11 +1,19 @@
 import React from 'react';
-import { components, ControlProps } from 'react-select';
+import { components, DropdownIndicatorProps, ControlProps } from 'react-select';
+import { VscTriangleDown } from 'react-icons/vsc';
+import { useTheme } from 'next-themes';
 import SortBy from '@app/components/Search/SortBy';
 import RefinementList from './RefinementList';
 import MenuSelect from './MenuSelect';
 import { NEXT_PUBLIC_ALGOLIA_INDEX_NAME } from '@app/constants';
-import { useTheme } from 'next-themes';
-import getCustomStyles from '../../utils/getCustomStyles';
+
+const DropdownIndicator = (props: DropdownIndicatorProps<any>) => {
+  return (
+    <components.DropdownIndicator {...props}>
+      <VscTriangleDown />
+    </components.DropdownIndicator>
+  );
+};
 
 const Control = ({ children, ...props }: ControlProps) => (
   <components.Control {...props}> {children}</components.Control>
@@ -13,7 +21,76 @@ const Control = ({ children, ...props }: ControlProps) => (
 
 const TutorialProposalFilter = () => {
   const { theme } = useTheme();
-  const customStyles = getCustomStyles(theme);
+
+  const toggleBg = theme === 'dark' ? '#131213' : '#FCFBF9';
+  const toggleText = theme === 'dark' ? '#EAE4D9' : '#1E1C1E';
+  const toggleHover = theme === 'dark' ? '#EB5F49' : '#EFBB73';
+
+  const customStyles = {
+    control: provided => ({
+      ...provided,
+      backgroundColor: 'none',
+      padding: '0px',
+      minHeight: '50px',
+      margin: '0px',
+      border: 'none',
+      boxShadow: 'none',
+      cursor: 'pointer',
+      transform: 'scale(1.05)',
+    }),
+
+    menu: provided => ({
+      ...provided,
+      backgroundColor: toggleBg,
+    }),
+
+    dropdownIndicator: (provided, state) => ({
+      ...provided,
+      color: toggleText,
+      fontSize: '1.5em',
+      cursor: 'pointer',
+      '&:hover': {
+        color: toggleHover,
+      },
+    }),
+
+    singleValue: provided => ({
+      ...provided,
+      color: toggleText,
+      margin: '0px',
+      padding: '0px',
+    }),
+
+    indicatorSeparator: provided => ({
+      ...provided,
+      display: 'none',
+    }),
+
+    menuList: provided => ({
+      ...provided,
+      backgroundColor: toggleBg,
+      color: toggleText,
+    }),
+
+    valueContainer: provided => ({
+      ...provided,
+      color: toggleText,
+      width: '500px',
+    }),
+
+    placeholder: (provided, state) => ({
+      ...provided,
+      color: toggleText,
+      display: state.isFocused && 'none',
+    }),
+
+    input: (provided, state) => ({
+      ...provided,
+      color: toggleText,
+      outline: 'none',
+      fontSize: 'larger',
+    }),
+  };
   return (
     <div className="divide-y-2 dark:divide-kafeblack divide-kafewhite">
       <div className="px-10 pt-5">
@@ -39,8 +116,8 @@ const TutorialProposalFilter = () => {
             },
           ]}
           Control={Control}
+          DropdownIndicator={DropdownIndicator}
           customStyles={customStyles}
-          instanceId="sort-by"
         />
       </div>
       <div className="px-10 pt-5">
@@ -48,6 +125,7 @@ const TutorialProposalFilter = () => {
         <RefinementList
           attribute="tags"
           Control={Control}
+          DropdownIndicator={DropdownIndicator}
           customStyles={customStyles}
         />
       </div>
