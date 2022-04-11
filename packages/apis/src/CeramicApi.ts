@@ -1,5 +1,5 @@
-import { CeramicClient } from '@ceramicnetwork/http-client';
-import { TileDocument } from '@ceramicnetwork/stream-tile';
+import CeramicClient from '@ceramicnetwork/http-client';
+import TileDocument from '@ceramicnetwork/stream-tile';
 import KeyDidResolver from 'key-did-resolver';
 import { DID } from 'dids';
 import { Ed25519Provider } from 'key-did-provider-ed25519';
@@ -31,7 +31,7 @@ class CeramicApi {
 
   private seed: string | undefined;
 
-  private readonly client: CeramicClient;
+  private readonly client: any;
 
   constructor(config: ApiConfig) {
     this.client = new CeramicClient(config.nodeUrl);
@@ -63,7 +63,7 @@ class CeramicApi {
 
     this.authenticatedDid = await this.client.did.authenticate();
 
-    return this.authenticatedDid;
+    return this.authenticatedDid as string;
   }
 
   async getMetadata(streamId: string): Promise<TutorialMetadata> {
