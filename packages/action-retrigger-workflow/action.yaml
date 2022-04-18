@@ -1,0 +1,10 @@
+name: 'Retrigger Workflow'
+description: 'rerun-desired-action'
+inputs:
+  GITHUB_TOKEN:
+  WORKFLOW_ID:
+  EVENT_TYPE:
+  ID_TO_RERUN:
+runs:
+  using: 'node12'
+  main: 'dist/index.js' 👈

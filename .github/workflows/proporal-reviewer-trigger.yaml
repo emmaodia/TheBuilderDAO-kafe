@@ -1,0 +1,30 @@
+name: Proposal Reviewers Check
+permissions:
+  contents: read
+  pull-requests: write
+on:
+  workflow_run:
+    workflows: [On Proposal Pull Request Reviewer]
+    types:
+      - completed
+jobs:
+  rerun:
+    runs-on: ubuntu-latest
+    name: Rerun Desired Action
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Check the forked event payload
+        run: |
+          echo "${{ github.workflow_run }}"
+      # - name: run desired action
+      #   uses: ethereum/EIP-Bot@d41fda65e1d311ce82b85f2e8db3fdbd5965acf5
+      #   id: rerun-desired-action
+      #   with:
+      #     # needs write access to the repo
+      #     GITHUB-TOKEN: ${{ secrets.TOKEN }}
+      #     WORKFLOW-ID: ${{github.event.workflow_run.id}}
+      #     # the event type you wish to rerun
+      #     EVENT-TYPE: "pull_request_target"
+      #     # the id of the workflow you're trying to re-run
+      #     ID-TO-RERUN: "6519819"

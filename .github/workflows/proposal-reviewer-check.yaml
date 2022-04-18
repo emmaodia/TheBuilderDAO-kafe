@@ -1,0 +1,14 @@
+name: On Proposal Pull Request Reviewer
+on:
+  pull_request_review:
+    types: [submitted]
+jobs:
+  dummy-workflow:
+    if: ${{startsWith(github.event.pull_request.head.ref, 'tutorials/')}}
+    runs-on: ubuntu-latest
+    name: dummy workflow
+    steps:
+      - name: Explanation
+        run: | 
+        echo "this is a dummy workflow that triggers a workflow_run;"
+        echo "it's necessary because otherwise the repo secrets will not be in scope for externally forked pull requests"
