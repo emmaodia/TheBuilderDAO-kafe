@@ -1,5 +1,13 @@
 # @builderdao/use-program-tutorial
 
+## 0.0.3
+
+### Patch Changes
+
+- 193029b: NPM Publishing merged to main repo
+- Updated dependencies [193029b]
+  - @builderdao/program-tutorial@0.0.7
+
 ## 0.0.2
 
 ### Patch Changes
